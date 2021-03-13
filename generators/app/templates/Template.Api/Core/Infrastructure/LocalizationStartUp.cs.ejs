@@ -1,0 +1,57 @@
+﻿using AutoMapper.Configuration;
+using <%= name %>.Api.Web.Extensions;
+using <%= name %>.Common.Config;
+using <%= name %>.Core.Resource;
+using <%= name %>.Core.Resources;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Localization;
+using Microsoft.Extensions.Options;
+using System.Collections.Generic;
+using System.Globalization;
+
+
+namespace <%= name %>.Api.Core.Infrastructure
+{
+
+    public static class LocalizationConfiguration
+    {
+        public static IServiceCollection AddLocalizationModule(this IServiceCollection @this, Microsoft.Extensions.Configuration.IConfiguration configuration)
+        {
+            var NovaSettings = new NovaSettings();
+            configuration.GetSection("Nova").Bind(NovaSettings);
+            @this.AddLocalization();
+
+            @this.Configure<RequestLocalizationOptions>(
+                options =>
+                {
+                    var supportedCultures = new List<CultureInfo>
+                    {
+                        new CultureInfo("en"),
+                        new CultureInfo("fa")
+                    };
+
+                    options.DefaultRequestCulture = new RequestCulture(culture: NovaSettings.DefaultLanguage, uiCulture: NovaSettings.DefaultLanguage);
+                    options.SupportedCultures = supportedCultures;
+                    options.SupportedUICultures = supportedCultures;
+                    options.RequestCultureProviders = new[] { new RouteDataRequestCultureProvider { IndexOfCulture = 1, IndexofUICulture = 1 ,DefaultLanguage= NovaSettings.DefaultLanguage } };
+                });
+
+ 
+            return @this;
+        }
+
+        public static IApplicationBuilder UseLocalization(this IApplicationBuilder @this, NovaSettings novaSettings)
+        {
+     
+            var localizeOptions = @this.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
+            @this.UseRequestLocalization(localizeOptions.Value);
+            var test = @this.ApplicationServices.GetService<IStringLocalizer<Resource>>();
+            ResourceHelper._localizer = test;
+            ResourceHelper.CurrentCulture = novaSettings.DefaultLanguage;
+            return @this;
+        }
+    }
+}

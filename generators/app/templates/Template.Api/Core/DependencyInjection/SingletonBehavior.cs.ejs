@@ -1,0 +1,29 @@
+﻿using <%= name %>.Common.Attributes;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace <%= name %>.Api.Core.DependencyInjection
+{
+    [Scope(Common.Enums.ServiceLifetime.Singleton)]
+    internal class SingletonBehavior : IServiceBehavior
+    {
+        private IServiceCollection _serviceDescriptors;
+        public SingletonBehavior(IServiceCollection serviceDescriptors)
+        {
+            _serviceDescriptors = serviceDescriptors;
+        }
+ 
+
+        IServiceCollection IServiceBehavior.Add(Type serviceType, Type implementationType)
+        {
+            return _serviceDescriptors.AddSingleton(serviceType, implementationType);
+        }
+
+        IServiceCollection IServiceBehavior.Add(Type serviceType)
+        {
+            return _serviceDescriptors.AddSingleton(serviceType);
+        }
+    }
+}

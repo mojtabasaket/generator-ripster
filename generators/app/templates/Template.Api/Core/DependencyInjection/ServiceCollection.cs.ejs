@@ -1,0 +1,81 @@
+﻿using <%= name %>.Common.Attributes;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
+
+namespace <%= name %>.Api.Core.DependencyInjection
+{
+    internal class ServiceCollection
+    {
+        private List<Type> _typesToRegister;
+
+        private IServiceCollection _serviceDescriptors;
+        private IHostingEnvironment _environment;
+        public ServiceCollection(List<Type> typesToRegister, IServiceCollection serviceDescriptors, IHostingEnvironment environment)
+        {
+            _typesToRegister = typesToRegister;
+            _serviceDescriptors = serviceDescriptors;
+            _environment = environment;
+        }
+
+
+        public void addServiceDescriptors()
+        {
+            
+            foreach (var item in _typesToRegister)
+            {
+                if (checkExistsHostEnvironment(item) == false)
+                    continue;
+                var service = GetServiceBehavior(getServiceLifetime(item));
+                var InterfacesTypes = item.GetInterfaces().ToList();
+                if (InterfacesTypes.Count == 0)
+                    service.Add(item);
+                else
+                    InterfacesTypes.ForEach(x => service.Add(x, item));
+            }
+        }
+
+
+        private Common.Enums.ServiceLifetime getServiceLifetime(Type type)
+        {
+            if (type.GetCustomAttributes(typeof(ScopeAttribute), false).Length > 0)
+                return ((ScopeAttribute)type.GetCustomAttributes(typeof(ScopeAttribute), false)[0]).getServiceLifetime();
+            else
+                return Common.Enums.ServiceLifetime.Scoped;
+        }
+
+        private  bool checkExistsHostEnvironment(Type type)
+        {
+            if (type.GetCustomAttributes(typeof(HostEnvironmentAttribute), false).Length > 0)
+            {
+                var host= ((HostEnvironmentAttribute)type.GetCustomAttributes(typeof(HostEnvironmentAttribute), false)[0]).getHostEnvironment();
+                if (host == Common.Enums.HostEnvironment.Development)
+                {
+                    return _environment.IsDevelopment();
+                }
+                else
+                {
+                    return _environment.IsProduction();
+                }
+            }
+            else
+                return true;
+        }
+
+        private IServiceBehavior GetServiceBehavior(Common.Enums.ServiceLifetime serviceLifetime)
+        {
+            var type = AppDomain.CurrentDomain.GetAssemblies().SelectMany(x => x.GetTypes())
+                .FirstOrDefault(x =>
+                 x.IsClass &&
+                 x.GetInterfaces().Any(i => i.Name == "IServiceBehavior") &&
+                  x.GetCustomAttribute<ScopeAttribute>().getServiceLifetime() == serviceLifetime
+                );
+            return (IServiceBehavior)Activator.CreateInstance(type, new Object[] { _serviceDescriptors });
+        }
+
+    }
+}

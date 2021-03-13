@@ -1,0 +1,88 @@
+﻿using IdentityServer4.AccessTokenValidation;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors.Infrastructure;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using <%= name %>.Common.Config;
+namespace <%= name %>.Api.Core.Infrastructure
+{
+    public static class SecurityStartup
+    {
+        public static IServiceCollection AddSecurityModule(this IServiceCollection @this
+            , IConfiguration configuration)
+        {
+
+            var NovaSettings = new NovaSettings();
+            configuration.GetSection("Nova").Bind(NovaSettings);
+
+
+            @this.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+            })
+       .AddJwtBearer(options =>
+       {
+           options.Authority = NovaSettings.Security.Authentication.IdentityServer.Authority;
+           options.RequireHttpsMetadata = false;
+           options.Audience = NovaSettings.Security.Authentication.IdentityServer.ApiName;
+           options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+           {
+               ValidIssuers = NovaSettings.ValidIssuers,//new List<string>() { "http://kernel.novalab.ir", "http://localhost:801" },
+               ValidateLifetime = true,
+               ClockSkew = TimeSpan.Zero
+           };
+       });
+
+
+
+            return @this;
+        }
+
+        public static IApplicationBuilder UseApplicationSecurity(this IApplicationBuilder @this,
+         NovaSettings letsCodeSettings)
+        {
+           
+            @this.UseCors(CorsPolicyBuilder(letsCodeSettings.Cors));            
+            @this.UseHsts();
+            @this.UseHttpsRedirection();
+            @this.UseAuthentication();
+            @this.UseAuthorization();
+            @this.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+
+            return @this;
+        }
+        private static Action<CorsPolicyBuilder> CorsPolicyBuilder(Cors config)
+        {
+            //TODO implement an url based cors policy rather than global or per controller
+            return builder => {
+                if (!config.AllowedOrigins.Equals("*"))
+                {
+                    if (config.AllowCredentials)
+                    {
+                        builder.AllowCredentials();
+                    }
+                    else
+                    {
+                        builder.DisallowCredentials();
+                    }
+                }
+
+                builder.WithOrigins(config.AllowedOrigins)
+                    .WithMethods(config.AllowedMethods)
+                    .WithHeaders(config.AllowedHeaders)
+                    .WithExposedHeaders(config.ExposedHeaders)
+                    .SetPreflightMaxAge(TimeSpan.FromSeconds(config.MaxAge));
+            };
+        }
+    }
+}

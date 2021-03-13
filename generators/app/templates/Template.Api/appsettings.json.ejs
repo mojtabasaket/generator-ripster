@@ -1,0 +1,30 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "Nova": {
+    "Security": {
+      "Authentication": {
+        "IdentityServer": {
+          "Authority": "https://localhost:44310",
+          "ApiName": "<%= name %>Api"
+        }
+      }
+    },
+    "Cors": {
+      "AllowedOrigins": "*",
+      "AllowedMethods": "*",
+      "AllowedHeaders": "*",
+      "ExposedHeaders": "Authorization,Link,X-Total-Count",
+      "AllowCredentials": true,
+      "MaxAge": 1800
+    }
+  },
+  "EntityFramework": {
+    "Connection": "Data Source=Database;Database=<%= name %>;User ID=Nova;Password=123!@#qweQWE"
+  }
+}

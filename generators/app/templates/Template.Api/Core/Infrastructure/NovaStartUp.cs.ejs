@@ -1,0 +1,23 @@
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using <%= name %>.Common.Config;
+
+namespace <%= name %>.Api.Core.Infrastructure
+{
+    
+
+    public static class NovaSettingsConfiguration
+    {
+        public static IServiceCollection AddNovaModule(this IServiceCollection @this, IConfiguration configuration)
+        {
+            
+            @this.Configure<NovaSettings>(configuration.GetSection("Nova"));
+            @this.AddScoped<NovaSettings, NovaSettings>();
+            return @this;
+        }
+    }
+}

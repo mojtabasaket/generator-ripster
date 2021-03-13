@@ -1,0 +1,27 @@
+using Hellang.Middleware.ProblemDetails;
+ 
+using <%= name %>.Core.Problems;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace <%= name %>.Api.Core.Infrastructure {
+    public static class ProblemDetailsStartup {
+        
+
+        public static IServiceCollection AddProblemDetailsModule(this IServiceCollection @this)
+        {
+            @this.ConfigureOptions<ProblemDetailsConfiguration>();
+            @this.AddProblemDetails();
+
+            return @this;
+        }
+
+        public static IApplicationBuilder UseApplicationProblemDetails(this IApplicationBuilder @this)
+        {
+          
+            @this.UseProblemDetails();
+           
+            return @this;
+        }
+    }
+}

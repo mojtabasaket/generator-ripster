@@ -1,0 +1,48 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information",
+      "Microsoft.EntityFrameworkCore": "Debug"
+    }
+  },
+  "Nova": {
+    "Security": {
+      "Authentication": {
+        "IdentityServer": {
+          "Authority": "http://localhost:12901",
+          "ApiName": "<%= name %>Api"
+        }
+      }
+    },
+    "Cors": {
+      "AllowedOrigins": "*",
+      "AllowedMethods": "*",
+      "AllowedHeaders": "*",
+      "ExposedHeaders": "Authorization,Link,X-Total-Count",
+      "AllowCredentials": true,
+      "MaxAge": 1800
+    },
+    "Consul": {
+      "Host": "http://localhost:8500",
+      "Uri": "http://localhost:61600",
+      "RegisterName": "<%= name %>"
+    },
+    "FileSystem": {
+      "CustomerFilePath": "C:\\Consul"
+    },
+    "ClientToken": {
+      "UserName": "admin",
+      "Password": "123",
+      "ApplicationID": "1"
+    },
+    "DefaultLanguage": "fa",
+    "ValidIssuers": [ "http://kernel.novalab.ir", "http://localhost:801" ]
+  },
+  "GateWayAPIServer": "http://localhost:21978",
+  "EntityFramework": {
+    "Connection": "Data Source=Database;Database=<%= name %>;User ID=Nova;Password=123!@#qweQWE"
+    //"Connection": "Data Source=localhost;Database=NovaIdentityServer;User ID=SA;Password=Pa33word"
+  }
+}

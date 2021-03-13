@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ACCOUNT_BALANCE_NOT_ENOUGH" xml:space="preserve">
+    <value>موجودی حساب کافی نیست</value>
+  </data>
+  <data name="ACCOUNT_BALANCE_NOT_FOUND" xml:space="preserve">
+    <value>باقیمانده حساب یافت نشد</value>
+  </data>
+  <data name="ACCOUNT_IS_INACTIVE" xml:space="preserve">
+    <value>وضعیت حساب مشتری غیرفعال می باشد</value>
+  </data>
+  <data name="ACCOUNT_JOURNAL_DETAIL_NOT_FOUND_TO_REGISTER" xml:space="preserve">
+    <value>سند حسابداری بابت انتقال یافت نشد</value>
+  </data>
+  <data name="ACCOUNT_NOT_FOUND" xml:space="preserve">
+    <value>برای مشتری افتتاح حساب انجام نشده است</value>
+  </data>
+  <data name="CLIENT_ERROR" xml:space="preserve">
+    <value>خطای سمت سرویس گیرنده</value>
+  </data>
+  <data name="CREDIT_PROFILE_NOT_FOUND" xml:space="preserve">
+    <value>به مشتری هیچ محصولی اختصاص نیافته است</value>
+  </data>
+  <data name="CUSTOMERGROUP_HAS_NO_CONTRACT" xml:space="preserve">
+    <value>قرارداد گروهی مشتری در سامانه اعتباری ثبت نگردیده است</value>
+  </data>
+  <data name="CUSTOMERGROUP_IS_INACTIVE" xml:space="preserve">
+    <value>سازمان مشتری غیر فعال است</value>
+  </data>
+  <data name="CUSTOMER_HAS_NO_CONTRACT" xml:space="preserve">
+    <value>قرارداد مشتری در سامانه ثبت نگردیده است</value>
+  </data>
+  <data name="CUSTOMER_IS_EXISTS" xml:space="preserve">
+    <value>مشتری قبلا در سامانه ثبت نام نموده است</value>
+  </data>
+  <data name="CUSTOMER_IS_INACTIVE" xml:space="preserve">
+    <value>وضعیت مشتری غیر فعال می باشد.</value>
+  </data>
+  <data name="CUSTOMER_NOT_FOUND" xml:space="preserve">
+    <value>مشتری با مشخصات ارسالی در سامانه یافت نشد</value>
+  </data>
+  <data name="CUSTOMER_NOT_VALID" xml:space="preserve">
+    <value>مشتری برای انجام این فعالیت مجوز ندارد</value>
+  </data>
+  <data name="DUPLICATE_HOST_REQUEST_NUMBER" xml:space="preserve">
+    <value>شماره مرجع  سامانه اعتباری تکراری است</value>
+  </data>
+  <data name="DUPLICATE_REQUEST_NUMBER" xml:space="preserve">
+    <value>شماره مرجع ارائه دهنده خدمات تکراری است </value>
+  </data>
+  <data name="EXISTS_ACTIVE_CONTRACT" xml:space="preserve">
+    <value>برای مشتریان حقیقی فقط یک پیوست قرارداد فعال میتوان ثبت نمود</value>
+  </data>
+  <data name="EXISTS_ACTIVE_CONTRACT_CUSTOMER_GROUP" xml:space="preserve">
+    <value>برای مشتریان حقوقی فقط یک قرارداد فعال میتوان ثبت نمود</value>
+  </data>
+  <data name="EXISTS_CONTRACT" xml:space="preserve">
+    <value>شماره قرارداد وارد شده تکراری می باشد</value>
+  </data>
+  <data name="FACILITIES_PROFILE_NOT_FOUND" xml:space="preserve">
+    <value>پروفایل تسهیلات یافت نشد</value>
+  </data>
+  <data name="FILEPATH_NOT_FOUND" xml:space="preserve">
+    <value>فایل پیدا نشد</value>
+  </data>
+  <data name="INSTALLMENT_COUNT_CEIL_HAS_NOT_BEEN_OBSERVED" xml:space="preserve">
+    <value>تعداد اقساط بیشتر از حد مجاز می باشد</value>
+  </data>
+  <data name="INSTALLMENT_COUNT_FLOOR_HAS_NOT_BEEN_OBSERVED" xml:space="preserve">
+    <value>تعداد اقساط کمتر از حد مجاز می باشد</value>
+  </data>
+  <data name="INVALID_REQUEST_CREDIT" xml:space="preserve">
+    <value>اعتباری درخواستی نمی بایست با اعتبار فعلی یکسان باشد</value>
+  </data>
+  <data name="INVALID_STATEMENT_AMOUNT" xml:space="preserve">
+    <value>مبلغ واریزی با بدهی اعلامی در وضعیت حساب مشتری یکسان نمی باشد</value>
+  </data>
+  <data name="IS_EXISTS" xml:space="preserve">
+    <value>موجودیت وجود دارد</value>
+  </data>
+  <data name="MAX_TRANSACTION_AMOUNT_HAS_NOT_BEEN_OBSERVED" xml:space="preserve">
+    <value>مبلغ تسهیلات بیش از حد مجار تعریف شده در سامانه اعتباری می باشد</value>
+  </data>
+  <data name="MAX_TRANSACTION_AMOUNT_PERDAY_HAS_NOT_BEEN_OBSERVED" xml:space="preserve">
+    <value>مبلغ خرید روزانه بیش از حد تعریف شده در سامانه اعتباری می باشد</value>
+  </data>
+  <data name="MAX_TRANSACTION_COUNT_PERDAY_HAS_NOT_BEEN_OBSERVED" xml:space="preserve">
+    <value>تعداد خرید روزانه بیش از حد تعریف شده در سامانه اعتباری می باشد</value>
+  </data>
+  <data name="MIN_FACILITY_AMOUNT_HAS_NOT_BEEN_OBSERVED" xml:space="preserve">
+    <value>مبلغ تسهیلات کمتر از حد مجاز تعریف شده در سامانه اعتباری می باشد</value>
+  </data>
+  <data name="MIN_TRANSACTION_AMOUNT_HAS_NOT_BEEN_OBSERVED" xml:space="preserve">
+    <value>مبلغ خرید کمتر از حد مجاز تعریف شده در سامانه اعتباری می باشد</value>
+  </data>
+  <data name="NONE" xml:space="preserve">
+    <value>خطای تعریف نشده</value>
+  </data>
+  <data name="NOT_EXIST" xml:space="preserve">
+    <value>موجودیت یافت نشد</value>
+  </data>
+  <data name="NOT_VALID" xml:space="preserve">
+    <value>درخواست نامعتبر می باشد</value>
+  </data>
+  <data name="PAYMENTID_EXIST" xml:space="preserve">
+    <value>شناسه پرداخت واریزی تکراری می باشد</value>
+  </data>
+  <data name="PAYMENTID_NOT_VALID" xml:space="preserve">
+    <value>شناسه پرداخت واریزی معتبر نمی باشد</value>
+  </data>
+  <data name="PROFILE_HASDEFAULT_CREDIT" xml:space="preserve">
+    <value>افزایش و کاهش اعتبار برای این محصول امکان پذیر نمی باشد</value>
+  </data>
+  <data name="PROFILE_NOT_FOUND" xml:space="preserve">
+    <value>محصولی در سامانه تعریف نشده است</value>
+  </data>
+  <data name="PROVIDER_NOT_FOUND" xml:space="preserve">
+    <value>ارائه دهنده خدمات پرداخت در سامانه ثبت نشده است</value>
+  </data>
+  <data name="REQUEST_CREDIT_NOT_IN_RANGE" xml:space="preserve">
+    <value>مبلغ اعتبار درخواستی خارج از بازه تعریف شده در محصول می باشد</value>
+  </data>
+  <data name="REQUEST_CREDIT_OUT_OF_RANGE_FINANCIER" xml:space="preserve">
+    <value>بدلیل محدودیت در خط اعتباری تعریف شده در محصول امکان اعطای اعتبار وجود ندارد</value>
+  </data>
+  <data name="SERVICEPOLICY_NOT_ALLOWED" xml:space="preserve">
+    <value>این محصول مجاز به استفاده از این سرویس نمی باشد</value>
+  </data>
+  <data name="STATEMENT_IS_CLEAR" xml:space="preserve">
+    <value>صورتحساب دوره انتخابی قبلا تسویه شده است</value>
+  </data>
+  <data name="STATEMENT_NUMBER_NOT_VALID" xml:space="preserve">
+    <value>شماره دوره انتخابی معتبر نمی باشد</value>
+  </data>
+  <data name="TRANSACTION_ALREADY_HAS_BEEN_COMPLETED" xml:space="preserve">
+    <value>تراکنش قبلا تکمیل شده است</value>
+  </data>
+  <data name="TRANSACTION_DATE_NOT_VALID" xml:space="preserve">
+    <value>تاریخ و ساعت تراکنش نامعتبر می باشد</value>
+  </data>
+  <data name="TRANSACTION_MODEL_NOT_FOUND" xml:space="preserve">
+    <value>خطای داخلی سیستم، مدلی برای ثبت تراکنش یافت نشد</value>
+  </data>
+  <data name="TRANSACTION_NOT_FOUND" xml:space="preserve">
+    <value>تراکنشی با مشخصات ارسالی در سامانه پیدا نشد</value>
+  </data>
+  <data name="TRANSFER_TYPE_NOT_FOUND" xml:space="preserve">
+    <value>نوع انتقال به حساب در سامانه پیدا نشد</value>
+  </data>
+  <data name="TRANSFER_TYPE_NOT_VALID" xml:space="preserve">
+    <value>نوع انتقال به حساب معتبر نمی باشد</value>
+  </data>
+</root>

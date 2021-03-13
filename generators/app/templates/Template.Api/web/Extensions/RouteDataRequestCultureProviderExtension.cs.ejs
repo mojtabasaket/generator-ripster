@@ -1,0 +1,34 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Localization;
+
+namespace <%= name %>.Api.Web.Extensions
+{
+    public class RouteDataRequestCultureProvider : RequestCultureProvider
+    {
+        public int IndexOfCulture;
+        public int IndexofUICulture;
+        public string DefaultLanguage;
+
+        public override Task<ProviderCultureResult> DetermineProviderCultureResult(HttpContext httpContext)
+        {
+            if (httpContext == null)
+                throw new ArgumentNullException(nameof(httpContext));
+
+            string culture =httpContext.Request.Headers["Culture"];
+            if (culture == null)
+                culture = DefaultLanguage;
+            //string culture = null;
+            //string uiCulture = null;
+
+            //culture = uiCulture = httpContext.Request.Path.Value.Split('/')[IndexOfCulture]?.ToString();
+
+            var providerResultCulture = new ProviderCultureResult(culture, culture);
+
+            return Task.FromResult(providerResultCulture);
+        }
+    }
+}

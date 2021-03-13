@@ -1,0 +1,34 @@
+﻿using AutoMapper;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
+
+namespace <%= name %>.Api.Core.Infrastructure
+{
+   
+
+    public static class AutoMapperConfiguration
+    {
+        public static IServiceCollection AddAutoMapperModule(this IServiceCollection @this)
+        {
+            var profiles = Assembly.Load("Template.Service")
+               .GetTypes()
+               .Where(t => typeof(Profile).GetTypeInfo().IsAssignableFrom(t.GetTypeInfo()))
+               .Where(t => !t.GetTypeInfo().IsAbstract)
+               .ToList();
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                profiles.ForEach(c => mc.AddProfile(c));
+
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            @this.AddSingleton(mapper);
+            // @this.AddAutoMapper(profiles);
+            return @this;
+        }
+    }
+}

@@ -1,0 +1,61 @@
+using <%= name %>.Api.Core.Infrastructure;
+ 
+using <%= name %>.Common.Config;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Localization;
+using Microsoft.Extensions.Options;
+ 
+using <%= name %>.Api.web.Middleware;
+
+namespace <%= name %>.Api
+{
+    public class Startup
+    {
+        private IHostingEnvironment CurrentEnvironment { get; set; }
+
+        public Startup(IConfiguration configuration, IHostingEnvironment env)
+        {
+            Configuration = configuration;
+            CurrentEnvironment = env;
+        }
+
+        public IConfiguration Configuration { get; }
+
+        // This method gets called by the runtime. Use this method to add services to the container.
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddMemoryCache();
+            services.AddNovaModule(Configuration)
+                      .AddSecurityModule(Configuration)
+                      .AddWebModule(CurrentEnvironment)
+                      .AddDatabaseModule(Configuration)
+                      .AddAutoMapperModule()
+                      .AddProblemDetailsModule()
+                      .AddConsulConfig(Configuration)
+                      .AddSwaggerModule()
+                      .AddHttpClientModule(Configuration)
+                      .AddLocalizationModule(Configuration)
+                      .AddMediatRModule();
+        }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
+             IOptions<NovaSettings> NovaSettingsOptions)
+        {
+            var NovaSettings = NovaSettingsOptions.Value;
+
+            //app
+            app
+               .UseLocalization(NovaSettings)
+               .UseApplicationWeb(env)
+               .UseMiddleware<RequestResponseLoggingMiddleware>()
+               .UseApplicationProblemDetails()
+               .UseConsul()
+               .UseApplicationSecurity(NovaSettings)
+               .UseApplicationSwagger();
+        }
+    }
+}
