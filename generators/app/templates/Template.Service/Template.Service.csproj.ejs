@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0-preview.8.20407.11" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\<%= name %>.Common\<%= name %>.Common.csproj" />
+    <ProjectReference Include="..\<%= name %>.Core\<%= name %>.Core.csproj" />
+    <ProjectReference Include="..\<%= name %>.Data\<%= name %>.Data.csproj" />
+  </ItemGroup>
+
+</Project>

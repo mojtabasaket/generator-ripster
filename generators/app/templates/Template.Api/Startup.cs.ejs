@@ -28,7 +28,7 @@ namespace <%= name %>.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMemoryCache();
-            services.AddNovaModule(Configuration)
+            services.Add<%= name %>Module(Configuration)
                       .AddSecurityModule(Configuration)
                       .AddWebModule(CurrentEnvironment)
                       .AddDatabaseModule(Configuration)
@@ -36,25 +36,22 @@ namespace <%= name %>.Api
                       .AddProblemDetailsModule()
                       .AddConsulConfig(Configuration)
                       .AddSwaggerModule()
-                      .AddHttpClientModule(Configuration)
-                      .AddLocalizationModule(Configuration)
                       .AddMediatRModule();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
-             IOptions<NovaSettings> NovaSettingsOptions)
+             IOptions<AppSettings> AppSettingsOptions)
         {
-            var NovaSettings = NovaSettingsOptions.Value;
+            var AppSettings = AppSettingsOptions.Value;
 
             //app
             app
-               .UseLocalization(NovaSettings)
                .UseApplicationWeb(env)
                .UseMiddleware<RequestResponseLoggingMiddleware>()
                .UseApplicationProblemDetails()
                .UseConsul()
-               .UseApplicationSecurity(NovaSettings)
+               .UseApplicationSecurity(AppSettings)
                .UseApplicationSwagger();
         }
     }

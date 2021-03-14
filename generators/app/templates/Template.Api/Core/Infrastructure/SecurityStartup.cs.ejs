@@ -17,8 +17,8 @@ namespace <%= name %>.Api.Core.Infrastructure
             , IConfiguration configuration)
         {
 
-            var NovaSettings = new NovaSettings();
-            configuration.GetSection("Nova").Bind(NovaSettings);
+            var appSettings = new AppSettings();
+            configuration.GetSection("<%= name %>").Bind(appSettings);
 
 
             @this.AddAuthentication(options =>
@@ -29,12 +29,12 @@ namespace <%= name %>.Api.Core.Infrastructure
             })
        .AddJwtBearer(options =>
        {
-           options.Authority = NovaSettings.Security.Authentication.IdentityServer.Authority;
+           options.Authority = appSettings.Security.Authentication.IdentityServer.Authority;
            options.RequireHttpsMetadata = false;
-           options.Audience = NovaSettings.Security.Authentication.IdentityServer.ApiName;
+           options.Audience = appSettings.Security.Authentication.IdentityServer.ApiName;
            options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
            {
-               ValidIssuers = NovaSettings.ValidIssuers,//new List<string>() { "http://kernel.novalab.ir", "http://localhost:801" },
+               ValidIssuers = appSettings.ValidIssuers,//new List<string>() { "http://kernel.ir", "http://localhost:801" },
                ValidateLifetime = true,
                ClockSkew = TimeSpan.Zero
            };
@@ -46,10 +46,10 @@ namespace <%= name %>.Api.Core.Infrastructure
         }
 
         public static IApplicationBuilder UseApplicationSecurity(this IApplicationBuilder @this,
-         NovaSettings letsCodeSettings)
+        AppSettings appSettings)
         {
            
-            @this.UseCors(CorsPolicyBuilder(letsCodeSettings.Cors));            
+            @this.UseCors(CorsPolicyBuilder(appSettings.Cors));            
             @this.UseHsts();
             @this.UseHttpsRedirection();
             @this.UseAuthentication();

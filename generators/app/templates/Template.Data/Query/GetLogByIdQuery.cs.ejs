@@ -1,0 +1,13 @@
+﻿using MediatR;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using <%= name %>.Core.Models;
+
+namespace <%= name %>.Data.Query
+{
+    public class GetLogByIdQuery : IRequest<Log>
+    {
+        public int Id { get; set; }
+    }
+}

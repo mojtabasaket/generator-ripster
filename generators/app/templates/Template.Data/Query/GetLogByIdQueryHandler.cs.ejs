@@ -1,0 +1,45 @@
+﻿using Dapper;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using <%= name %>.Common.Attributes;
+using <%= name %>.Core.Data;
+using <%= name %>.Core.Models;
+using <%= name %>.Data;
+
+namespace <%= name %>.Data.Query
+{
+
+    [Bean]
+    public class GetLogByIdQueryHandler : IRequestHandler<GetLogByIdQuery, Log>
+    {
+        private readonly ISqlConnectionFactory _sqlConnectionFactory;
+        public GetLogByIdQueryHandler( ISqlConnectionFactory sqlConnectionFactory)
+        {
+    
+            _sqlConnectionFactory = sqlConnectionFactory;
+        }
+
+
+
+        public async Task<Log> Handle(GetLogByIdQuery request, CancellationToken cancellationToken)
+        {
+
+            const string sql = "SELECT * " +
+                      "FROM  "+nameof(Log)+@" 
+                       where "+nameof(Log.Id)+"= @Id";
+
+            var connection = _sqlConnectionFactory.GetOpenConnection();
+ 
+            return await connection.QuerySingleOrDefaultAsync<Log>(sql, new
+            {
+                request.Id
+            });
+        }
+    }
+}

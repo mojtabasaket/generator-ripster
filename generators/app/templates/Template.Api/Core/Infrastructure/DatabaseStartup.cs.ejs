@@ -1,0 +1,25 @@
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using <%= name %>.Data;
+using <%= name %>.Core.Data;
+ 
+namespace <%= name %>.Api.Core.Infrastructure
+{
+    public static class DatabaseConfiguration
+    {
+        public static IServiceCollection AddDatabaseModule(this IServiceCollection @this, IConfiguration configuration)
+        {
+            var entityFrameworkConfiguration = configuration.GetSection("EntityFramework");
+            @this.AddDbContext<<%= name %>DBContext>(options => options.UseSqlServer(entityFrameworkConfiguration["Connection"]));
+
+            @this.AddScoped<ISqlConnectionFactory, SqlConnectionFactory>(s=> new SqlConnectionFactory(entityFrameworkConfiguration["Connection"]));
+            return @this;
+        }
+
+    }
+}

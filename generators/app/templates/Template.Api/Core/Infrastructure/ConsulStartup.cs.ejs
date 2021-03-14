@@ -13,16 +13,16 @@ namespace <%= name %>.Api.Core.Infrastructure
     public static class ConsulStartup
     {
         private static IConfiguration _configuration;
-        private static NovaSettings _NovaSettings;
+        private static AppSettings _appSettings;
         public static IServiceCollection AddConsulConfig(this IServiceCollection services, IConfiguration configuration)
         {
-            var NovaSettings = new NovaSettings();
-            configuration.GetSection("Nova").Bind(NovaSettings);
-            _NovaSettings = NovaSettings;
+            var appSettings = new AppSettings();
+            configuration.GetSection("<%= name %>").Bind(appSettings);
+            _appSettings = appSettings;
             _configuration = configuration;
             services.AddSingleton<IConsulClient, ConsulClient>(p => new ConsulClient(consulConfig =>
             {
-                var address = _NovaSettings.Consul.Host;//configuration.GetValue<string>("Consul:Host");
+                var address = _appSettings.Consul.Host;//configuration.GetValue<string>("Consul:Host");
                 consulConfig.Address = new Uri(address);
             }));
             return services;
@@ -42,12 +42,12 @@ namespace <%= name %>.Api.Core.Infrastructure
             //Console.WriteLine($"address={address}");
 
             //var uri = new Uri(address);
-            var uri = new Uri(_NovaSettings.Consul.Uri);
+            var uri = new Uri(_appSettings.Consul.Uri);
             var registration = new AgentServiceRegistration()
             {
-                ID = $"{_NovaSettings.Consul.RegisterName}-{uri.Port}",
+                ID = $"{_appSettings.Consul.RegisterName}-{uri.Port}",
                 // servie name  
-                Name = _NovaSettings.Consul.RegisterName,
+                Name = _appSettings.Consul.RegisterName,
                 Address = $"{uri.Host}",
                 Port = uri.Port
             };

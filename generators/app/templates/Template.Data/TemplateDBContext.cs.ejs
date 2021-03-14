@@ -1,0 +1,24 @@
+﻿using <%= name %>.Core.Models;
+using <%= name %>.Data.Configurations;
+using <%= name %>.Data.Configurations.Applicator;
+using Microsoft.EntityFrameworkCore;
+
+namespace <%= name %>.Data
+{
+    public class <%= name %>DBContext : DbContext
+    {
+        public <%= name %>DBContext(DbContextOptions<<%= name %>DBContext> options) : base(options)
+        {  
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ApplyAllConfigurations();
+        }
+        public virtual DbSet<Log> Logs { get; set; }
+    }
+    
+
+
+}

@@ -25,16 +25,16 @@ namespace <%= name %>.Api.Core.Infrastructure
              });
 
 
-            var TypesToRegister = Assembly.Load("Template.Service")
+            var TypesToRegister = Assembly.Load("<%= name %>.Service")
             .GetTypes()
             .Where(x => x.GetCustomAttributes(typeof(BeanAttribute), false).Length > 0)
             .ToList();
 
-            TypesToRegister.AddRange(Assembly.Load("Template.Data")
+            TypesToRegister.AddRange(Assembly.Load("<%= name %>.Data")
             .GetTypes()
             .Where(x => x.GetCustomAttributes(typeof(BeanAttribute), false).Length > 0)
             .ToList());
-            new Template.Api.Core.DependencyInjection.ServiceCollection(TypesToRegister, @this,environment).addServiceDescriptors();
+            new DependencyInjection.ServiceCollection(TypesToRegister, @this,environment).addServiceDescriptors();
          
 
             return @this;

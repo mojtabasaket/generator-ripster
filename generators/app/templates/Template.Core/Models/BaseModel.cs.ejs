@@ -1,0 +1,15 @@
+﻿using System;
+
+namespace <%= name %>.Core.Models
+{
+    public class BaseModel<TPrimaryKey>
+        {
+            public TPrimaryKey Id { get; set; }
+    
+            public DateTime CreateDate { get; set; }
+    
+            public DateTime? ModifyDate { get; set; }
+    
+            public int CreatorUserId { get; set; }
+        }
+}

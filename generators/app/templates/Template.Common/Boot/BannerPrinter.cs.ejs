@@ -1,0 +1,23 @@
+using System;
+using System.Diagnostics;
+using System.Threading;
+using <%= name %>.Boot.Ansi;
+
+namespace <%= name %>.Common.Boot {
+
+    public class BannerPrinter
+    {
+        public static void PrintBanner(int sleepMilli = 0) {
+            Console.WriteLine($"  {AnsiColor.GREEN}      ██         █████████   ██████████   ███████   {AnsiColor.RED}    █████████       ████████        ████████        ██████████");
+            Console.WriteLine($"  {AnsiColor.GREEN}      ██         ██              ██      ██         {AnsiColor.RED}  ██              ██        ██      ██      ██      ██        ");
+            Console.WriteLine($"  {AnsiColor.GREEN}      ██         ████████        ██       ██████    {AnsiColor.RED} ██              ██          ██     ██       ██     ████████  ");
+            Console.WriteLine($"  {AnsiColor.GREEN}      ██         ██              ██            ██   {AnsiColor.RED}  ██              ██        ██      ██      ██      ██        ");
+            Console.WriteLine($"  {AnsiColor.GREEN}      ████████   █████████       ██      ██████     {AnsiColor.RED}    █████████       ████████        ████████        ██████████");
+
+            Console.WriteLine($"{AnsiColor.WHITE}        ███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████");
+            Console.WriteLine($"{AnsiColor.BRIGHT_BLUE}:: Repster.Net 🤓  :: Running ASP.Net Core 'The best version' ::");
+            Console.WriteLine($":: http://Ripster.github.io ::{AnsiColor.DEFAULT}");
+            Thread.Sleep(sleepMilli);
+        }
+    }
+}

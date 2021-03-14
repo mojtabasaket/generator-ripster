@@ -1,0 +1,35 @@
+using Hellang.Middleware.ProblemDetails;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+
+namespace <%= name %>.Core.Problems
+{
+    public class BadRequestAlertException : ProblemDetailsException
+    {
+
+      
+
+        public BadRequestAlertException(string type, string detail, string entityName) : base(
+          new ProblemDetails
+          {
+              Type = type,
+              Detail =detail,
+              Status = StatusCodes.Status400BadRequest,
+              Extensions = { ["params"] = entityName, ["message"] = $"error.{entityName}"}
+          })
+        {
+        }
+
+        public BadRequestAlertException(string type, string detail, string entityName, Dictionary<string, string> param) : base(
+          new ProblemDetails
+          {
+              Type = type,
+              Detail =  detail ,
+              Status = StatusCodes.Status400BadRequest,
+              Extensions = { ["params"] = param, ["message"] = $"error.{entityName}", }
+          })
+        {
+        }
+    }
+}

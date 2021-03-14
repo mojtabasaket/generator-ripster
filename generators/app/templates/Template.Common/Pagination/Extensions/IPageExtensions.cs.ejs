@@ -1,0 +1,28 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace <%= name %>.Common.Pagination.Extensions
+{
+    public static class IPageExtensions
+    {
+        public static IPage<TDestination> Map<TSource, TDestination>(
+            this IPage<TSource> sourcePage,
+            List<TDestination> content)
+            where TDestination : class where TSource : class
+        {
+            return new Page<TDestination>(content, sourcePage.Pageable, sourcePage.TotalElements);
+        }
+        
+        public static IPage<TDestination> Map<TSource, TDestination>(
+            this IPage<TSource> sourcePage,
+            Func<TSource,TDestination> mapper)
+            where TDestination : class where TSource : class
+        {
+            return new Page<TDestination>(
+                sourcePage.Content.Select(mapper).ToList(), 
+                sourcePage.Pageable, 
+                sourcePage.TotalElements);
+        }
+    }
+}

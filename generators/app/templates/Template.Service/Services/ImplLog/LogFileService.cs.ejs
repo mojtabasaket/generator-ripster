@@ -1,0 +1,21 @@
+﻿using <%= name %>.Common.Attributes;
+using <%= name %>.Core.Models;
+using <%= name %>.Core.Services;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace <%= name %>.Services.Services.ImplLog
+{
+    [Bean]
+    [HostEnvironment(Common.Enums.HostEnvironment.Production)]
+    class LogFileService : ILogService
+    {
+        
+        public async Task log(Log log)
+        {
+          
+        }
+    }
+}

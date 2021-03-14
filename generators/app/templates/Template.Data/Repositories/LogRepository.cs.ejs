@@ -1,0 +1,23 @@
+﻿using <%= name %>.Core.Models;
+using <%= name %>.Core.Data.Repositories;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace <%= name %>.Data.Repositories
+{
+ 
+    public class LogRepository : Repository<Log>, ILogRepository
+    { 
+        public LogRepository(<%= name %>DBContext repositoryContext)
+        : base(repositoryContext)
+        {
+
+        }
+ 
+        public <%= name %>DBContext DBContext
+        {
+            get { return Context as <%= name %>DBContext; }
+        }
+    }
+}

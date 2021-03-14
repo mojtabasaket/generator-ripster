@@ -1,0 +1,11 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+
+namespace <%= name %>.Core.Data
+{
+    public interface ISqlConnectionFactory
+    {
+        IDbConnection GetOpenConnection();
+    }
+}
