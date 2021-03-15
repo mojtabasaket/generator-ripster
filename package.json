@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "Yeoman generator",
   "main": "app/index.js",
+  "bin": {
+    "ripster": "program.js"
+  },
   "scripts": {
     "test": "mocha"
   },
@@ -12,7 +15,8 @@
   ],
   "keywords": [
     "yeoman-generator",
-    "ripster"
+    "ripster",
+    "program.js"
   ],
   "repository": {
     "type": "git",
@@ -25,11 +29,11 @@
   },
   "license": "Ripster0.1",
   "dependencies": {
-    "yeoman-environment": "2.10.3",
-    "yeoman-generator": "4.12.0",
     "chalk": "^1.0.0",
-    "yosay": "^1.0.2",
-    "yo": "3.1.1"
+    "yeoman-environment": "^2.10.3",
+    "yeoman-generator": "4.12.0",
+    "yo": "3.1.1",
+    "yosay": "^1.0.2"
   },
   "devDependencies": {
     "chai": "4.2.0",

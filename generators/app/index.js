@@ -22,7 +22,7 @@ module.exports = class extends Generator {
           {
             type: "input",
             name: "name",
-            message: "Your project name?"
+            message: "Your project name12?"
           }
         ]);
       }
