@@ -15,8 +15,7 @@
   ],
   "keywords": [
     "yeoman-generator",
-    "ripster",
-    "program.js"
+    "ripster"
   ],
   "repository": {
     "type": "git",

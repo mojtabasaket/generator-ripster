@@ -1,7 +1,7 @@
-var Generator = require('yeoman-generator');
+﻿var Generator = require('yeoman-generator');
 const prompts = require('./prompts');
 const defaultApplicationOptions = require('../../ripster/default-application-options');
-
+const chalk = require('chalk');
 const defaultNewApplicationOptions = defaultApplicationOptions.getConfigForMonolithApplication();
 // const fs = require('fs-extra');
 
@@ -12,9 +12,28 @@ module.exports = class extends Generator {
 
         this.options = defaultNewApplicationOptions;
         this.existingProject = true;
-
+        this._printRipsterLogo();
         
    
+    }
+
+    _printRipsterLogo() {
+        this.log('\n');
+        this.log(`${chalk.green('███████╗ ')}${chalk.red('████████╗ ███████╗   ██████╗ ████████╗ ████████╗ ███████╗')}`);
+        this.log(`${chalk.green('██╔═══██╗')}${chalk.red('╚══██╔══╝ ██╔═══██╗ ██╔════╝ ╚══██╔══╝ ██╔═════╝ ██╔═══██╗')}`);
+        this.log(`${chalk.green('███████╔╝')}${chalk.red('   ██║    ███████╔╝ ╚█████╗     ██║    ██████╗   ███████╔╝')}`);
+        this.log(`${chalk.green('██╔══██║ ')}${chalk.red('   ██║    ██╔════╝   ╚═══██╗    ██║    ██╔═══╝   ██╔══██║')}`);
+        this.log(`${chalk.green('██║  ╚██╗')}${chalk.red('████████╗ ██║       ██████╔╝    ██║    ████████╗ ██║  ╚██╗')}`);
+        this.log(`${chalk.green('╚═╝   ╚═╝')}${chalk.red('╚═══════╝ ╚═╝       ╚═════╝     ╚═╝    ╚═══════╝ ╚═╝   ╚═╝')}\n`); 
+        this.log(chalk.white.bold('                            https://www.Ripster.tech\n'));
+        this.log(chalk.white('Welcome to Ripster '));
+        this.log(chalk.white(`Application files will be generated in folder: ${chalk.yellow(process.cwd())}`));
+ 
+        this.log(
+            chalk.green(
+                ' _______________________________________________________________________________________________________________\n'
+            )
+        );
     }
  
       async prompting() {
@@ -22,7 +41,7 @@ module.exports = class extends Generator {
           {
             type: "input",
             name: "name",
-            message: "Your project name12?"
+            message: "Your project name?"
           }
         ]);
       }
