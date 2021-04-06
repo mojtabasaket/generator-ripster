@@ -1,19 +1,15 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 
 namespace <%= name %>.Api.Core.Infrastructure
 {
- 
+
     public static class MediatRConfiguration
     {
         public static IServiceCollection AddMediatRModule(this IServiceCollection @this)
         {
-            @this.AddMediatR(Assembly.GetExecutingAssembly(), Assembly.Load("<%= name %>.Service"), Assembly.Load("<%= name %>.Data"));
+            @this.AddMediatR(Assembly.GetExecutingAssembly());
             return @this;
         }
     }

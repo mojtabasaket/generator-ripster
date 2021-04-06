@@ -72,6 +72,7 @@ function getConfigForMicroserviceApplication(customOptions = {}) {
 function getDefaultConfigForNewApplication(customOptions = {}) {
     const options = {
         [BASE_NAME]: OptionValues[BASE_NAME],
+        [APPLICATION_TYPE]: MONOLITH,
         ...customOptions,
     };
  
